@@ -1,0 +1,62 @@
+<div class="m">
+	<div class="b10">&nbsp;</div>
+	<div class="foot_search">
+		<div class="foot_search_m" id="foot_search_m">
+		{loop $MODULE $m}{if $m[ismenu] && !$m[islink]}<span id="foot_search_m_{$m[moduleid]}" onclick="setFModule({$m[moduleid]})" class="{if $m[moduleid]==$searchid}f_b{else}{/if}">{$m[name]}</span> | {/if}{/loop}
+		</div>
+		<div>
+		<form id="foot_search" action="{DT_PATH}search.php" onsubmit="return Fsearch();">
+		<input type="hidden" name="moduleid" value="{$searchid}" id="foot_moduleid"/>
+		<input type="text" name="kw" class="foot_search_i" id="foot_kw" value="{if $kw}{$kw}{else}请输入关键词{/if}" onfocus="if(this.value=='请输入关键词') this.value='';"/>&nbsp;&nbsp;
+		<input type="submit" class="foot_search_s" id="foot_search_s" value="搜索"/>
+		</form>
+		</div>
+	</div>
+	<div class="b10">&nbsp;</div>
+</div>
+<div class="m">
+	<div class="foot">
+		<div id="webpage">
+		<a href="{$MODULE[1][linkurl]}">网站首页</a>
+		<!--{tag("table=webpage&condition=item=1&areaid=$cityid&order=listorder desc,itemid desc&template=list-webpage")}-->
+		| <a href="{$MODULE[1][linkurl]}sitemap/">网站地图</a>
+		{if $EXT[guestbook_enable]} | <a href="{$EXT[guestbook_url]}">网站留言</a>{/if}
+		{if $EXT[ad_enable]} | <a href="{$EXT[ad_url]}">广告服务</a>{/if}
+		{if $EXT[gift_enable]} | <a href="{$EXT[gift_url]}">积分换礼</a>{/if}
+		{if $EXT[feed_enable]} | <a href="{$EXT[feed_url]}">RSS订阅</a>{/if}
+		{if $DT[icpno]} | <a href="http://www.miibeian.gov.cn" target="_blank">{$DT[icpno]}</a>{/if}
+		</div>
+		<div id="copyright">{$DT[copyright]}</div>
+		{if DT_DEBUG}<div class="px11">{debug()}</div>{/if}
+		<div id="powered"><a href="http://www.destoon.com/" target="_blank"><img src="{DT_PATH}file/image/powered.gif" width="136" height="10" alt="Powered by DESTOON 4.0"/></a></div>
+	</div>
+</div>
+
+<div id="destoon_toolbar">
+	<div class="tb_m">
+		<div class="tb_r">
+			<div>
+				<img src="{$MODULE[2][linkurl]}image/ico_newcart.gif" width="16" height="16" align="absmiddle" alt=""/>
+				<a href="{$MODULE[16][linkurl]}cart.php">购物车</a>(<span id="destoon_cart">0</span>)&nbsp;&nbsp;&nbsp;
+				<img src="{$MODULE[2][linkurl]}image/ico_message.gif" width="16" height="16" align="absmiddle" alt=""/>
+				<a href="{$MODULE[2][linkurl]}message.php">站内信</a>(<span id="destoon_message">0</span>)
+				{if $DT[im_web]}
+				&nbsp;&nbsp;&nbsp;<img src="{$MODULE[2][linkurl]}image/ico_newchat.gif" width="14" height="13" align="absmiddle" alt=""/>
+				<a href="{$MODULE[2][linkurl]}chat.php">新对话</a>(<span id="destoon_chat">0</span>)
+				{/if}
+			</div>
+		</div>
+		<div class="tb_l">
+			<div>
+				<img src="{DT_SKIN}image/vip.gif" alt="上网做生意，首选{VIP}会员" align="absmiddle"/> <a href="{$MODULE[2][linkurl]}grade.php">会员服务</a>
+				| <a href="{$MODULE[2][linkurl]}{$DT[file_my]}">发布信息</a>
+				| <a href="{$MODULE[2][linkurl]}">会员中心</a>
+				| <a href="{$MODULE[1][linkurl]}">返回首页</a>
+			</div>
+		</div>
+		<div class="tb_c" onclick="window.scrollTo(0,0);" title="返回顶部" id="tb_c"></div>
+	</div>
+</div>
+<script type="text/javascript">show_task('{$destoon_task}');</script>
+</body>
+</html>

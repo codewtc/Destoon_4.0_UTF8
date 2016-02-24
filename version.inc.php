@@ -1,0 +1,5 @@
+<?php
+define('DT_VERSION', '4.0');
+define('DT_RELEASE', '20130116');
+define('DT_LICENSE', '3B1D05E6655266E9E0F5E8F303A3DBC9');
+?>

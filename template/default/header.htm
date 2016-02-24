@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset={DT_CHARSET}"/>
+<title>{if $seo_title}{$seo_title}{else}{if $head_title}{$head_title}{$DT[seo_delimiter]}{/if}{if $city_sitename}{$city_sitename}{else}{$DT[sitename]}{/if}{/if}</title>
+{if $head_keywords}
+<meta name="keywords" content="{$head_keywords}"/>
+{/if}
+{if $head_description}
+<meta name="description" content="{$head_description}"/>
+{/if}
+<meta name="generator" content="Destoon B2B,www.destoon.com"/>
+<link rel="shortcut icon" type="image/x-icon" href="{DT_PATH}favicon.ico"/>
+<link rel="bookmark" type="image/x-icon" href="{DT_PATH}favicon.ico"/>
+{if $head_canonical}
+<link rel="canonical" href="{$head_canonical}"/>
+{/if}
+<link rel="stylesheet" type="text/css" href="{DT_SKIN}style.css"/>
+{if $moduleid>4}<link rel="stylesheet" type="text/css" href="{DT_SKIN}{$module}.css"/>{/if}
+{if $CSS}
+{loop $CSS $css}
+<link rel="stylesheet" type="text/css" href="{DT_SKIN}{$css}.css"/>
+{/loop}
+{/if}
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="{DT_SKIN}ie6.css"/>
+<![endif]-->
+{if !DT_DEBUG}<script type="text/javascript">window.onerror=function(){return true;}</script>{/if}
+{if $itemid && $DT[anticopy]}
+<script type="text/javascript">
+document.oncontextmenu=function(e){return false;};
+document.onselectstart=function(e){return false;};
+</script>
+{/if}
+<script type="text/javascript" src="{DT_PATH}lang/{DT_LANG}/lang.js"></script>
+<script type="text/javascript" src="{DT_PATH}file/script/config.js"></script>
+<script type="text/javascript" src="{DT_PATH}file/script/common.js"></script>
+<script type="text/javascript" src="{DT_PATH}file/script/page.js"></script>
+</head>
+<body>
+<div class="top">
+	<div class="top_div">
+		<div class="f_r" id="destoon_member"></div>
+		<div>
+			<script type="text/javascript">addFav('收藏本页');</script>
+			| <a href="{$MODULE[3][linkurl]}shortcut.php" rel="nofollow">加入桌面</a>
+			{if $EXT[wap_enable]} | <a href="{$EXT[wap_url]}">手机版</a>{/if}
+			{if $EXT[archiver_enable]} | <a href="{$EXT[archiver_url]}">无图版</a>{/if}
+			{if $DT[city]} | [<span id="destoon_city">{$city_name}</span>] <a href="{DT_PATH}city.php" title="点击切换城市">切换</a>{/if}
+		</div>
+	</div>
+</div>
+<div class="m"><div id="search_tips" style="display:none;"></div></div>
+<div class="m">
+	<div class="f_l logo"><a href="{$MODULE[1][linkurl]}"><img src="{if $MODULE[$moduleid][logo]}{DT_SKIN}image/logo_{$moduleid}.gif{elseif $DT[logo]}{$DT[logo]}{else}{DT_SKIN}image/logo.gif{/if}" alt="{$DT[sitename]}"/></a></div>	
+	{php $searchid = ($moduleid > 3 && $MODULE[$moduleid]['ismenu'] && !$MODULE[$moduleid]['islink']) ? $moduleid : 5;}
+	{php $searchids = array(5,16,6,4,21,22);}
+	{if !in_array($searchid, $searchids)}
+		{php $searchids[] = $searchid;}
+	{/if}
+	<script type="text/javascript">var searchid = {$searchid};</script>
+	<form id="destoon_search" action="{DT_PATH}search.php" onsubmit="return Dsearch();">
+	<input type="hidden" name="moduleid" value="{$searchid}" id="destoon_moduleid"/>
+	<input type="hidden" name="spread" value="0" id="destoon_spread"/>
+	<div class="f_l head_search">
+		<ul id="search_module">
+			{loop $searchids $s}
+			{if isset($MODULE[$s])}<li{if $searchid == $s} class="head_search_on"{/if} onclick="setModule({$s}, this);"><span>{$MODULE[$s][name]}</span></li>{/if}
+			{/loop}
+		</ul>
+		<div>
+			<input name="kw" id="destoon_kw" type="text" class="search_i" value="{if $kw}{$kw}{else}请输入关键词{/if}" onfocus="if(this.value=='请输入关键词') this.value='';"{if $DT[search_tips]} onkeyup="STip(this.value);" autocomplete="off"{/if}/>
+			<input type="submit" value=" " class="search_s"/>
+		</div>
+	</div>
+	</form>
+	<div class="f_l head_search_adv">
+	<a href="" onclick="Dsearch_adv();return false;" class="head_search_adv_1">高级搜索</a>
+	<a href="" onclick="Dsearch_top();return false;" class="head_search_adv_2">标王直达</a>
+	</div>
+	<div class="f_l btntool">
+		<a href="{$EXT[spread_url]}"><img src="{DT_SKIN}image/btn_word.gif" width="32" height="32" alt="排名推广"/><br/>
+		<span>排名推广</span></a>
+	</div>
+	<div class="f_l btntool">
+		<a href="{$MODULE[2][linkurl]}{$DT[file_my]}"><img src="{DT_SKIN}image/btn_edit.gif" width="32" height="32" alt="发布信息"/><br/>
+		<span>发布信息</span></a>
+	</div>
+	<div class="f_l btntool">
+		<a href="{$MODULE[2][linkurl]}"><img src="{DT_SKIN}image/btn_user.gif" width="32" height="32" alt="会员中心"/><br/>
+		<span>会员中心</span></a>
+	</div>
+</div>
+<div class="m">
+	<div class="menu_l">&nbsp;</div>
+	<div class="menu_b">
+		<div class="menu">
+			<ul><li{if $moduleid<4} class="menuon"{/if}><a href="{$MODULE[1][linkurl]}"><span>首页</span></a></li>{loop $MODULE $m}{if $m[ismenu]}<li{if $m[moduleid]==$moduleid} class="menuon"{/if}><a href="{$m[linkurl]}"{if $m[isblank]} target="_blank"{/if}><span{if $m[style]} style="color:{$m[style]};"{/if}>{$m[name]}</span></a></li>{/if}{/loop}</ul>
+		</div>
+	</div>
+	<div class="menu_r">&nbsp;</div>
+</div>
+<div class="m b10">&nbsp;</div>
